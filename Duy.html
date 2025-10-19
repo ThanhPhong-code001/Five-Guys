@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✨ Portfolio - Hồ Quốc Duy ✨</title>
+
+  <!-- FontAwesome -->
+  <script src="https://kit.fontawesome.com/a2d9a6a0b5.js" crossorigin="anonymous"></script>
+
+  <!-- Hiệu ứng chữ chạy trong tiêu đề -->
+  <script>
+    let titleText = "✨ Portfolio - Hồ Quốc Duy ✨ ";
+    let speed = 200;
+    function animateTitle() {
+      titleText = titleText.substring(1) + titleText.charAt(0);
+      document.title = titleText;
+      setTimeout(animateTitle, speed);
+    }
+    animateTitle();
+  </script>
+
+  <style>
+    /* ===== RESET ===== */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: #c9e7fa;
+      color: #333;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    h3 { color: #007bff; margin-bottom: 10px; }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      background: #333;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar h1 {
+      font-size: 20px;
+      color: #00ff99;
+      text-shadow: 0 0 10px #00ff99;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .nav-links li { margin: 0 10px; }
+    .nav-links a {
+      color: white; text-decoration: none; background: #9a74db;
+      padding: 8px 15px; border-radius: 8px; transition: all 0.3s ease;
+    }
+    .nav-links a:hover {
+      background: #7b5fc3; transform: scale(1.05);
+    }
+
+    /* ===== BOX CHUNG ===== */
+    .portfolio-box {
+      background: rgba(255, 255, 255, 0.6);
+      margin: 50px auto;
+      padding: 30px;
+      width: 80%;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.8s ease;
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    .portfolio-box.show {
+      opacity: 1; transform: translateY(0);
+    }
+
+    .portfolio-info p { margin: 8px 0; }
+
+    /* ===== AVATAR ===== */
+    .img-avatar {
+      width: 150px; height: 150px; border-radius: 50%;
+      object-fit: cover; display: block; margin: 0 auto 20px;
+      border: 3px solid #007bff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    /* ===== HÌNH ẢNH ===== */
+    #hinhanh img {
+      width: 150px; height: 150px; margin: 10px; border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    #hinhanh img:hover { transform: scale(1.05); }
+    #hinhanh div { text-align: center; }
+
+    /* ===== NÚT ===== */
+    .download-btn, .btn-back-home {
+      display: inline-block;
+      background: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+    }
+    .download-btn:hover, .btn-back-home:hover {
+      background: #0056b3;
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5);
+    }
+    .btn-back-container { text-align: center; margin: 30px 0; }
+
+    /* ===== KỸ NĂNG ===== */
+    #kynang h3 { text-align: center; margin-bottom: 20px; }
+
+    .skill-box {
+      width: 80%;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 15px;
+      padding: 15px 25px;
+      margin: 15px auto;
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      position: relative;
+    }
+
+    .skill-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .progress-bar {
+      position: relative;
+      width: 100%;
+      height: 10px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.3);
+      overflow: hidden;
+    }
+
+    .progress { height: 100%; border-radius: 8px; }
+    .html .progress { background: linear-gradient(90deg, #ff5f6d, #ffc371); width: 75%; }
+    .js .progress { background: linear-gradient(90deg, #fff700, #ffda00); width: 90%; }
+    .python .progress { background: linear-gradient(90deg, #46c2ff, #008cff); width: 60%; }
+    .java .progress { background: linear-gradient(90deg, #00fff2, #0099ff); width: 80%; }
+    .english .progress { background: linear-gradient(90deg, #a8ff78, #78ffd6); width: 70%; }
+
+    /* ===== PROJECT ===== */
+    #duan h3 { text-align: center; }
+    .project-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 20px;
+    }
+    .project-card {
+      width: 300px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      padding: 20px;
+      transition: 0.3s;
+      backdrop-filter: blur(6px);
+    }
+    .project-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    .project-card img {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+
+    /* ===== TUYẾT ===== */
+    .snowflake {
+      position: fixed;
+      top: 0;
+      z-index: 9999;
+      font-size: 1.2em;
+      user-select: none;
+      pointer-events: none;
+      animation: snowFall linear forwards;
+      text-shadow: 0 0 10px rgba(174, 233, 255, 0.8);
+    }
+    @keyframes snowFall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0.8; }
+    }
+
+    /* ===== NỀN CANVAS ===== */
+    #background-animation {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== NỀN ĐỘNG ===== -->
+  <canvas id="background-animation"></canvas>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <h1>Portfolio - Hồ Quốc Duy</h1>
+    <ul class="nav-links">
+      
+      <li><a href="#thongtin"><i class="fa-solid fa-user"></i> Thông tin</a></li>
+      <li><a href="#hinhanh"><i class="fa-solid fa-image"></i> Hình ảnh</a></li>
+      <li><a href="#mota"><i class="fa-solid fa-pen-nib"></i> Mô tả</a></li>
+      <li><a href="#sothich"><i class="fa-solid fa-heart"></i> Sở thích</a></li>
+      <li><a href="#kynang"><i class="fa-solid fa-code"></i> Kỹ năng</a></li>
+      <li><a href="#duan"><i class="fa-solid fa-diagram-project"></i> Project</a></li>
+      <li><a href="#lienhe"><i class="fa-solid fa-envelope"></i> Liên hệ</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== CÁC PHẦN NỘI DUNG ===== -->
+  <section class="portfolio">
+    <!-- THÔNG TIN CÁ NHÂN -->
+    <div id="thongtin" class="portfolio-box">
+      <img src="Image/duy2.jpg" alt="Hồ Quốc Duy" class="img-avatar" />
+      <div class="portfolio-info">
+        <h3>Thông tin cá nhân</h3>
+        <p><b>Họ và tên:</b> Hồ Quốc Duy</p>
+        <p><b>Quê quán:</b> Quảng Ngãi</p>
+        <p><b>Trường:</b> Đại học Bình Dương</p>
+        <p><b>Trạng thái:</b> Còn đi học</p>
+        <p><b>Địa chỉ hiện tại:</b> TP. Hồ Chí Minh</p>
+      </div>
+    </div>
+
+    <!-- HÌNH ẢNH -->
+    <div id="hinhanh" class="portfolio-box">
+      <div class="portfolio-info">
+        <h3>Hình ảnh cá nhân</h3>
+        <div>
+          <img src="Image/duy1.jpg" alt="">
+          <img src="Image/duy3.jpg" alt="">
+          <img src="Image/duy4.jpg" alt="">
+        </div>
+      </div>
+    </div>
+
+    <!-- MÔ TẢ -->
+    <div id="mota" class="portfolio-box">
+      <div class="portfolio-info">
+        <h3>Mô tả sơ lược</h3>
+        <p>Mình là Hồ Quốc Duy, sinh viên ngành Công Nghệ Thông Tin của Đại học Bình Dương.
+        Là một phần của nhóm Five Guys, mình luôn muốn tạo ra những sản phẩm có giá trị thực tiễn,
+        kết hợp giữa công nghệ và trải nghiệm người dùng.</p>
+      </div>
+    </div>
+
+    <!-- NGHỀ NGHIỆP -->
+    <div id="nghe" class="portfolio-box">
+      <div class="portfolio-info">
+        <h3>Thông tin nghề nghiệp</h3>
+        <p><b>Chuyên ngành:</b> Công Nghệ Thông Tin</p>
+        <p><b>Định hướng nghề nghiệp:</b> Nhà phát triển Web Fullstack</p>
+      </div>
+    </div>
+
+    <!-- SỞ THÍCH -->
+    <div id="sothich" class="portfolio-box">
+      <div class="portfolio-info">
+        <h3>Sở thích</h3>
+        <p><b>Hoạt động:</b> Chơi game, xem phim, đi phượt</p>
+        <p><b>Thức ăn yêu thích:</b> Cơm, phở, bánh xèo</p>
+      </div>
+    </div>
+
+    <!-- KỸ NĂNG -->
+    <div id="kynang" class="portfolio-box">
+      <h3>Ngôn ngữ & Kỹ năng</h3>
+      <div class="skill-box html">
+        <div class="skill-title">HTML/CSS <span>75%</span></div>
+        <div class="progress-bar"><div class="progress"></div></div>
+      </div>
+      <div class="skill-box js">
+        <div class="skill-title">JavaScript <span>90%</span></div>
+        <div class="progress-bar"><div class="progress"></div></div>
+      </div>
+      <div class="skill-box python">
+        <div class="skill-title">Python <span>60%</span></div>
+        <div class="progress-bar"><div class="progress"></div></div>
+      </div>
+      <div class="skill-box java">
+        <div class="skill-title">Java <span>80%</span></div>
+        <div class="progress-bar"><div class="progress"></div></div>
+      </div>
+      <div class="skill-box english">
+        <div class="skill-title">English <span>70%</span></div>
+        <div class="progress-bar"><div class="progress"></div></div>
+      </div>
+    </div>
+
+    <!-- PROJECT -->
+    <div id="duan" class="portfolio-box">
+      <div class="portfolio-info">
+        <h3><i class="fa-solid fa-briefcase"></i> Project</h3>
+        <div class="project-container">
+          <div class="project-card">
+            <img src="Images/duan2.png" alt="Website Portfolio">
+            <h4>💻 Website Portfolio</h4>
+            <p><b>Contribute:</b> 90%</p>
+            <p><b>Role:</b> Frontend Developer & Designer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIÊN HỆ -->
+    <div id="lienhe" class="portfolio-box">
+      <h3><i class="fa-solid fa-paper-plane"></i> Kết nối với mình</h3>
+      <div class="contact-grid" style="display:flex; flex-wrap:wrap; justify-content:center; gap:25px;">
+        <div class="contact-card" style="text-align:center; background:rgba(255,255,255,0.5); padding:20px; border-radius:15px; width:250px;">
+          <i class="fa-solid fa-envelope" style="color:#007bff; font-size:30px;"></i>
+          <h4>Email</h4>
+          <p>24050020@student.bdu.edu.vn</p>
+        </div>
+
+        <div class="contact-card" style="text-align:center; background:rgba(255,255,255,0.5); padding:20px; border-radius:15px; width:250px;">
+          <i class="fa-brands fa-facebook" style="color:#1877f2; font-size:30px;"></i>
+          <h4>Facebook</h4>
+          <a href="https://www.facebook.com/share/1CT1stWT56/?mibextid=wwXlfr" target="_blank">Ghé thăm trang cá nhân</a>
+        </div>
+
+        <div class="contact-card" style="text-align:center; background:rgba(255,255,255,0.5); padding:20px; border-radius:15px; width:250px;">
+          <i class="fa-solid fa-phone" style="color:#28a745; font-size:30px;"></i>
+          <h4>Điện thoại</h4>
+          <p>0984886347</p>
+        </div>
+
+        <div class="contact-card" style="text-align:center; background:rgba(255,255,255,0.5); padding:20px; border-radius:15px; width:250px;">
+          <i class="fa-solid fa-file-arrow-down" style="color:#6f42c1; font-size:30px;"></i>
+          <h4>My CV</h4>
+          <a href="CV_HoQuocDuy.pdf" download class="download-btn"><i class="fa-solid fa-download"></i>Download </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NÚT QUAY LẠI -->
+  <div class="btn-back-container">
+    <button class="btn-back-home" onclick="scrollToTop()">⬆️ Quay lại đầu trang</button>
+  </div>
+
+  <!-- ===== SCRIPT ===== -->
+  <script>
+    // Hiệu ứng cuộn
+    const boxes = document.querySelectorAll(".portfolio-box");
+    function checkBoxes() {
+      const triggerBottom = window.innerHeight * 0.85;
+      boxes.forEach(box => {
+        const boxTop = box.getBoundingClientRect().top;
+        if (boxTop < triggerBottom) box.classList.add("show");
+        else box.classList.remove("show");
+      });
+    }
+    window.addEventListener("scroll", checkBoxes);
+    checkBoxes();
+
+    // Nút quay lại đầu trang
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Nền động
+    const canvas = document.getElementById("background-animation");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const particles = [];
+    function random(min, max) { return Math.random() * (max - min) + min; }
+
+    class Particle {
+      constructor() {
+        this.x = random(0, canvas.width);
+        this.y = random(0, canvas.height);
+        this.size = random(1, 3);
+        this.speedY = random(0.2, 0.8);
+      }
+      update() {
+        this.y += this.speedY;
+        if (this.y > canvas.height) this.y = 0;
+      }
+      draw() {
+        ctx.fillStyle = "rgba(0, 150, 255, 0.4)";
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    for (let i = 0; i < 150; i++) { particles.push(new Particle()); }
+    function animateBackground() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animateBackground);
+    }
+    animateBackground();
+
+    // Hiệu ứng tuyết
+    const snowContainer = document.createElement("div");
+    document.body.appendChild(snowContainer);
+    function createSnowflake() {
+      const snowflake = document.createElement("div");
+      snowflake.classList.add("snowflake");
+      snowflake.textContent = "❄";
+      snowflake.style.left = Math.random() * window.innerWidth + "px";
+      snowflake.style.fontSize = Math.random() * 12 + 10 + "px";
+      snowflake.style.animationDuration = Math.random() * 3 + 4 + "s";
+      snowflake.style.color = ["#aee9ff", "#d6f3ff", "#ffffff"][Math.floor(Math.random() * 3)];
+      snowflake.style.opacity = Math.random();
+      snowflake.style.animationDelay = Math.random() * 5 + "s";
+      snowContainer.appendChild(snowflake);
+      setTimeout(() => snowflake.remove(), 8000);
+    }
+    setInterval(createSnowflake, 200);
+  </script>
+ </body> 
+ </html>
+<footer style="background-color: #242424; color: white; text-align: center; padding: 15px 0;">
+    <span style="background-color: #212505; padding: 5px 10px; border-radius: 5px;">
+        © 2025 <strong>Hồ Quốc Duy</strong>
+    </span>
+</footer>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV — Trần Thanh Phong</title>
+  <link rel="stylesheet" href="style1.css" />
+  <script defer src="script.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navbar trên cùng -->
+  <header class="top-nav">
+    <div class="logo">Trần Thanh Phong</div>
+      <nav>
+        <a href="index.html">Trang chủ</a>
+        <a href="#about">Giới thiệu</a>
+        <a href="#info">Thông tin</a>
+        <a href="#skills">Kỹ năng</a>
+        <a href="#projects">Dự án</a>
+      </nav>
+  </header>
+
+  <!-- Header chính -->
+  <section class="hero">
+  <canvas id="bgCanvas"></canvas>
+  <div class="hero-content">
+    <div class="text-area">
+      <h1 id="typing"></h1><span class="cursor">|</span>
+      <p id="location" class="fade-in">TP. Hồ Chí Minh, Việt Nam</p>
+    </div>
+    <div class="image-area">
+      <img src="Image/phong5.jpg" alt="Trần Thanh Phong">
+    </div>
+  </div>
+</section>
+
+
+  <!-- Nội dung CV -->
+  <main class="cv">
+    <section class="card about" id="about">
+  <div class="about-img-container">
+    <img src="Image/phong2.jpg" alt="Ảnh giới thiệu">
+  </div>
+  <h2>Giới thiệu</h2>
+  <p>
+    Tôi hiện là sinh viên năm 2 ngành công nghệ thông tin tại Đại học Bình Dương, đam mê lập trình ứng dụng,
+    thiết kế giao diện, sáng tạo các hiệu ứng web đẹp mắt và những nhứ mới mẻ hấp dẫn, mong muốn cải thiện kỹ năng bù đắp các thiếu sót.
+  </p>
+</section>
+ <!--Bộ ảnh cá nhân-->>
+<section class="card about-gallery-section" id="gallery">
+  <h2>Hình ảnh cá nhân</h2>
+  <div class="about-gallery">
+    <img src="Image/phong2.jpg" alt="Ảnh cá nhân 1">
+    <img src="Image/phong3.jpg" alt="Ảnh cá nhân 2">
+    <img src="Image/phong4.jpg" alt="Ảnh cá nhân 3">
+  </div>
+</section>
+    <!-- Phần Thông tin tổng -->
+<section class="card" id="info">
+  <h2>Thông tin cá nhân</h2>
+
+  <!-- Thanh nút điều hướng con -->
+  <nav class="card navbar">
+    <button class="nav-btn active" data-section="education">📘Giáo dục</button>
+    <button class="nav-btn" data-section="hobby">😄Sở thích</button>
+    <button class="nav-btn" data-section="birthday">🎂Sinh nhật</button>
+    <button class="nav-btn" data-section="cert">📜Chứng nhận</button>
+  </nav>
+
+  <!-- Các phần nội dung con -->
+  <section class="card info-section active" id="education">
+    <h2>Giáo dục</h2>
+    <ul>
+      <li>2021-2024: Trường THPT Phước Bình tại Bình Phước</li>
+      <li>2024-hiện tại: Trường đại học Bình Dương tại Tp.Hồ Chí Minh</li>
+    </ul>
+  </section>
+
+  <section class="card info-section" id="hobby">
+    <h2>Sở thích</h2>
+    <ul>
+      <li>Sáng tạo: Lập trình web, Lập trình game</li>
+      <li>Hoạt động: nghe nhạc, xem phim, đọc truyện</li>
+      <li>Ăn uống: Chuối, đào, xoài, bánh xèo</li>
+    </ul>
+  </section>
+
+  <section class="card info-section" id="birthday">
+    <h2>Sinh nhật</h2>
+    <p><strong>Ngày sinh:</strong> 23/02/2006</p>
+    <p><strong>Giới tính:</strong> Nam</p>
+    <p><strong>Quê quán:</strong> Quảng Ngải</p>
+    <p><strong>Cung hoàng đạo:</strong> Song Ngư ♓</p>
+  </section>
+
+  <section class="card info-section" id="cert">
+    <h2>Chứng nhận</h2>
+    <ul>
+      <li>Chứng chỉ Arduino Cơ bản</li>
+    </ul>
+  </section>
+</section>
+    <!-- Phần Kỹ năng --> 
+    <section class="card skills" id="skills">
+      <h2>Kỹ năng & Ngôn ngữ</h2>
+      <div class="skills-grid">
+        <div class="skill"><div class="skill-header"><span>HTML</span><span>80%</span></div><div class="bar"><div class="bar-fill" data-value="80"></div></div></div>
+        <div class="skill"><div class="skill-header"><span>CSS</span><span>85%</span></div><div class="bar"><div class="bar-fill" data-value="85"></div></div></div>
+        <div class="skill"><div class="skill-header"><span>JavaScript</span><span>80%</span></div><div class="bar"><div class="bar-fill" data-value="80"></div></div></div>
+        <div class="skill"><div class="skill-header"><span>C#</span><span>75%</span></div><div class="bar"><div class="bar-fill" data-value="75"></div></div></div>
+        <div class="skill"><div class="skill-header"><span>WPF</span><span>70%</span></div><div class="bar"><div class="bar-fill" data-value="70"></div></div></div>
+      </div>
+    </section>
+    
+    <section class="card projects" id="projects">
+  <h2>💻 Dự án của tôi</h2>
+  <div class="project-gallery">
+    <div class="project-item">
+      <img src="Image/phongduan.jpg" alt="Ứng dụng xây dựng trang web">
+      <div class="overlay">
+        <h3>Ứng dụng xây dựng trang web</h3>
+        <p>Giúp người dùng, đặc biệt là sinh viên, doanh nghiệp nhỏ hoặc cá nhân, tự tạo website chuyên nghiệp phục vụ học tập, giới thiệu sản phẩm, dịch vụ hay dự án cá nhân.</p>
+      </div>
+    </div>
+  </div>
+      <!--Cuộn lên trang đầu-->>
+      </section>    
+      <button id="scrollTopBtn" title="Lên đầu trang">🔼</button>
+      <section class="contact-section" id="contact">
+        <!--Về tôi-->>
+    <div class="contact-left">
+      <h2>Contact Me</h2>
+      <p>📧 24050031@student.bdu.edu.vn</p>
+      <p>📞 0814965003</p>
+
+    <div class="social-links">
+  <a href="https://web.facebook.com/phong.tran.354332/" target="_blank">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a href="https://github.com/ThanhPhong-code001" target="_blank">
+    <i class="fab fa-github"></i>
+  </a>
+</div>
+
+
+      <a href="CV_ThanhPhong.pdf" download class="download-cv-btn">📄 Download CV</a>
+    </div>
+
+      <form class="contact-right" action="https://formsubmit.co/24050031@student.bdu.edu.vn" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="New message from your website!">
+        
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+
+    <footer class="card footer-card">
+      <p>© 2025 Trần Thanh Phong — Đại học Bình Dương, Khoa CNTT</p>
+    </footer>
+  </main>
+</body>
+</html>

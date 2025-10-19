@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio - Nguyễn Thế Vinh</title>
+
+  <!-- Pixel font -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <style>
+    /* cập nhật phần grid để chia cân hơn */
+.container {
+  max-width: 1180px;
+  margin: 18px auto;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* phóng to avatar nhẹ cho cân */
+.avatar {
+  width: 130px;
+  height: 130px;
+}
+
+/* chỉnh lại section để thoáng hơn */
+.section {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 22px;
+  margin-bottom: 22px;
+  border: 1px solid rgba(0,255,136,0.06);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+/* font-size heading giảm nhẹ để hài hoà */
+.section h4 {
+  font-size: 12px;
+}
+
+/* căn giữa lại text footer */
+footer {
+  text-align: center;
+  color: var(--neon);
+  margin-top: 18px;
+  font-size: 10px;
+}
+/* === BANNER + NAVBAR === */
+.banner {
+  width: 100%;
+  text-align: center;
+  padding: 50px 0 36px;
+  background: linear-gradient(180deg, rgba(0,255,136,0.15) 0%, rgba(0,0,0,0) 100%);
+  border-bottom: 1px solid rgba(0,255,136,0.25);
+  animation: fadeInDown 1s ease forwards;
+}
+
+.banner-content {
+  animation: fadeIn 1.5s ease forwards;
+}
+
+.title {
+  font-size: 32px;
+  color: var(--neon);
+  text-shadow: 0 0 8px rgba(0,255,136,0.7);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #aaffdd;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.navbar {
+  margin-top: 24px;
+}
+
+.navbar ul {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #88ffcc;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+  color: var(--neon);
+  text-shadow: 0 0 6px var(--neon);
+}
+
+/* Hiệu ứng xuất hiện nhẹ */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+    :root{
+      --neon: #00ff88;
+      --neon-strong: #66ffb3;
+      --card-bg: rgba(3,10,13,0.66);
+      --deep: #071016;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: 'Press Start 2P', monospace;
+      background: linear-gradient(180deg, rgba(0,0,0,0.65), rgba(0,0,0,0.75)), url('hinh-anh-hacker-3d-ngau-1-16-08-53-27.jpg') center/cover fixed no-repeat;
+      color: var(--neon);
+      -webkit-font-smoothing: none;
+      -moz-osx-font-smoothing: grayscale;
+      overflow: hidden;
+    }
+
+    canvas#matrix {
+      position: fixed;
+      inset: 0;
+      width:100%;
+      height:100%;
+      z-index: 0;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+  #loader {
+  position: fixed;
+  inset: 0;
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 14px;
+  background: radial-gradient(circle at 50% 40%, rgba(0,0,0,0.35), rgba(0,0,0,0.9));
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+#loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-card {
+  position: relative;
+  padding: 30px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.25));
+  border: 1px solid rgba(0,255,136,0.12);
+  box-shadow: 0 0 30px rgba(0,255,136,0.25), 0 0 80px rgba(0,255,136,0.1);
+  min-width: 320px;
+  max-width: 680px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Thanh scan ánh sáng */
+.loader-scan {
+  position: absolute;
+  top: -120%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background: linear-gradient(180deg, rgba(0,255,136,0) 0%, rgba(0,255,136,0.3) 50%, rgba(0,255,136,0) 100%);
+  animation: scanMove 2.5s linear infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes scanMove {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Tiêu đề chính */
+.loader-title {
+  font-size: 18px;
+  color: var(--neon-strong);
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px rgba(0,255,136,0.8);
+  animation: flicker 1.8s infinite;
+}
+
+/* Chữ gõ dần */
+.typewriter div {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--neon);
+  width: 0;
+  animation: typing 2s steps(30, end) forwards;
+}
+.typewriter div:nth-child(1){animation-delay:0.2s;}
+.typewriter div:nth-child(2){animation-delay:1s;}
+.typewriter div:nth-child(3){animation-delay:2s;}
+.typewriter div:nth-child(4){animation-delay:3s;}
+.typewriter div:nth-child(5){animation-delay:4s;}
+
+@keyframes typing {
+  to { width: 100%; border-right-color: transparent; }
+}
+
+/* Thanh tiến trình neon */
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(0,255,136,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 18px;
+}
+.progress {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0,255,136,0.8), rgba(0,255,136,0.4));
+  animation: progressLoad 5s ease-in-out forwards;
+}
+@keyframes progressLoad {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+/* Ánh sáng nhấp nháy nhẹ */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+
+    #main {
+      position: relative;
+      z-index: 6;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .9s ease, transform .9s ease;
+      pointer-events: none;
+      padding: 18px;
+    }
+    #main.visible {
+      opacity:1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 18px auto;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .profile {
+      position: sticky;
+      top: 18px;
+      align-self: start;
+      z-index: 6;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 18px;
+      border: 1px solid rgba(0,255,136,0.06);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    /* ---------- AVATAR FRAME UPDATED ---------- */
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 999px;
+      margin: 6px auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid rgba(0,255,136,0.3);
+      box-shadow: 0 0 14px rgba(0,255,136,0.4);
+      animation: glowPulse 3s ease-in-out infinite;
+      background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.2));
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      transition: all 0.4s ease;
+    }
+
+    .avatar:hover {
+      .name, .role {
+  text-shadow: 0 0 8px rgba(0,255,136,0.3);
+}
+      box-shadow: 0 0 22px rgba(0,255,136,0.8), 0 0 40px rgba(0,255,136,0.6);
+      transform: scale(1.03);
+    }
+
+    @keyframes glowPulse {
+      0% { box-shadow: 0 0 10px rgba(0,255,136,0.4), 0 0 25px rgba(0,255,136,0.25); }
+      50% { box-shadow: 0 0 18px rgba(0,255,136,0.8), 0 0 40px rgba(0,255,136,0.4); }
+      100% { box-shadow: 0 0 10px rgba(0,255,136,0.4), 0 0 25px rgba(0,255,136,0.25); }
+    }
+    /* ---------- END AVATAR ---------- */
+
+    .name {
+      text-align: center;
+      color: var(--neon-strong);
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+    .role {
+      text-align: center;
+      color: rgba(180,255,190,0.9);
+      font-size: 10px;
+      margin-bottom: 10px;
+    }
+
+    .badges {
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:8px;
+    }
+    .badge {
+      font-size: 9px;
+      padding:6px 8px;
+      border-radius:8px;
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(0,255,136,0.06);
+      color: rgba(200,255,200,0.95);
+    }
+
+    .contact-list {
+      margin-top:12px;
+      font-size:10px;
+      color: rgba(180,255,200,0.95);
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .contact-list a { color: var(--neon); text-decoration:none; font-size:10px; }
+
+    .content {
+      z-index:5;
+    }
+    .section {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(0,255,136,0.06);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    }
+    .section h4{
+      font-size: 13px;
+      color: var(--neon-strong);
+      margin-bottom: 10px;
+    }
+    .section p{
+      font-size: 11px;
+      line-height:1.7;
+      color: rgba(200,255,200,0.95);
+    }
+
+    .skill-list { display:flex; gap:8px; flex-wrap:wrap }
+    .skill { font-size:9px; padding:6px 8px; border-radius:8px; background: rgba(0,0,0,0.45); border:1px solid rgba(0,255,136,0.06); color:rgba(200,255,200,0.95); }
+
+    .project {
+      margin-bottom:12px;
+      padding:12px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.08));
+      border-radius:8px;
+      border:1px solid rgba(0,255,136,0.04);
+    }
+    .project b { display:block; color: var(--neon-strong); margin-bottom:6px; font-size:11px; }
+
+    footer{ text-align:center; color:var(--neon); margin-top:14px; font-size:10px; }
+
+    @media (max-width: 900px) {
+      .container { grid-template-columns: 1fr; padding: 10px; }
+      .profile { position: relative; top: 0; }
+      .avatar { width: 90px; height: 90px; }
+    }
+    /* === Hiệu ứng cuộn mượt (CSS3) === */
+html {
+  scroll-behavior: smooth;
+}
+.banner {
+  width: 100%;
+  text-align: center;
+  padding: 40px 0 30px; /* giảm padding cho cân */
+  margin-bottom: 20px; /* tạo khoảng thở với phần main */
+}
+.title {
+  font-size: clamp(20px, 3vw, 32px); /* tự co giãn hợp lý */
+}
+.container {
+  max-width: 1180px;
+  margin: 18px auto;
+  display: grid;
+  grid-template-columns: 360px 1fr; /* tăng cột trái một chút cho cân */
+  gap: 28px;
+  align-items: start;
+}
+  </style>
+</head>
+<body>
+  <!-- ===== BANNER + NAVBAR ===== -->
+<header class="banner">
+  <div class="banner-content">
+    <h1 class="title">Portfolio - Nguyễn Thế Vinh</h1>
+    <p class="subtitle">💻 Web Developer | Designer | Dream Builder</p>
+  </div>
+
+  <nav class="navbar">
+    <ul>
+      <li><a href="#about">Giới thiệu</a></li>
+      <li><a href="#skills">Kỹ năng</a></li>
+      <li><a href="#projects">Dự án</a></li>
+      <li><a href="#contact">Liên hệ</a></li>
+    </ul>
+  </nav>
+</header>
+  <canvas id="matrix" aria-hidden="true"></canvas>
+
+<div id="loader" role="status" aria-live="polite">
+  <div class="loader-card">
+    <div class="loader-scan"></div>
+    <div class="loader-title">🔐 SYSTEM BOOT SEQUENCE</div>
+    <div class="loader-lines typewriter">
+      <div>Initializing neural core...</div>
+      <div>Connecting to data stream...</div>
+      <div>Decrypting access layer...</div>
+      <div>Loading Portfolio Interface...</div>
+      <div>Access Granted ✅</div>
+    </div>
+    <div class="progress-bar">
+      <div class="progress"></div>
+    </div>
+  </div>
+</div>
+
+
+  <main id="main">
+    <div class="container">
+      <aside class="profile">
+        <div class="card">
+          <div class="avatar">
+            <img src="Image/01.jpg" alt="Ảnh cá nhân Nguyễn Thế Vinh">
+          </div>
+          <div class="name">Nguyễn Thế Vinh</div>
+          <div class="role">Frontend Developer • Game Dev Enthusiast</div>
+          <li><a href="index.html">Trang chủ</a></li>
+          <div class="badges">
+            <div class="badge">Bình dương</div>
+            <div class="badge">Student</div>
+            <div class="badge">27TH01</div>
+          </div>
+
+          <div class="contact-list">
+            <div><strong style="color:var(--neon-strong);font-size:10px">Email:</strong> <a href="mailto:24050040@student.bdu.edu.vn">24050040@student.bdu.edu.vn</a></div>
+          </div>
+        </div>
+      </aside>
+
+      <section class="content">
+        <div class="section">
+          <h4>Giới thiệu ngắn</h4>
+          <p>Xin chào — tôi là <b>Nguyễn Thế Vinh</b>, thích học hỏi công nghệ mới, lập trình game RPG + Openworld, muốn làm việc trong môi trường đầy sức sáng tạo.</p>
+
+          <div style="margin-top:12px">
+            <h4>Kỹ năng</h4>
+            <div class="skill-list">
+              <div class="skill">HTML & CSS</div>
+              <div class="skill">JavaScript (ES6+)</div>
+              <div class="skill">React / Next.js</div>
+              <div class="skill">Responsive Design</div>
+              <div class="skill">UI/UX & Figma</div>
+              <div class="skill">Git & CI/CD</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h4>Dự án tiêu biểu</h4>
+          <div class="project">
+            <b>Lập trình game RPG + Openworld</b>
+            <p style="margin-top:8px;font-size:11px;color:rgba(190,255,200,0.9)">Vai trò: Mang đến sự giải trí sau giờ làm việc và giảm stress.</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h4>Sở thích & Hoạt động</h4>
+          <p>Tôi thích chơi game, nghe nhạc, xem phim, ép xung [overlocking] và nhiều sở thích khác nữa.</p>
+        </div>
+
+        <div class="section">
+          <h4>Ngôn ngữ & Kỹ năng khác</h4>
+          <p>Ngôn ngữ lập trình: HTML, CSS, JavaScript, C#, Python. Kỹ năng chuyên môn: Thiết kế & lập trình game, overclocking (ép xung).</p>
+        </div>
+
+        <div class="section">
+          <h4>Liên hệ</h4>
+          <p>Email: <a href="mailto:24050040@student.bdu.edu.vn">24050040@student.bdu.edu.vn</a> — Facebook: <a href="#" target="_blank">Liên kết Facebook</a></p>
+        </div>
+
+        <footer>Đại học Bình Dương • Khoa CNTT • Lớp 27TH01</footer>
+      </section>
+    </div>
+  </main>
+
+  <script>
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+
+function setSize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+setSize();
+window.addEventListener('resize', () => {
+  setSize();
+  initDrops();
+});
+
+let fontSize = Math.max(14, Math.floor(window.innerWidth / 85));
+let columns = Math.floor(canvas.width / fontSize);
+let drops = [];
+
+function initDrops() {
+  fontSize = Math.max(14, Math.floor(window.innerWidth / 85));
+  columns = Math.floor(canvas.width / fontSize);
+  drops = new Array(columns).fill(0).map(() => Math.random() * -canvas.height);
+}
+initDrops();
+
+const letters = '0101010001101001010101010001';
+
+function draw() {
+  // Nền mờ dần tạo hiệu ứng "thác số" mượt hơn
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.font = fontSize + 'px monospace';
+  ctx.textBaseline = 'top';
+
+  for (let i = 0; i < drops.length; i++) {
+    const x = i * fontSize;
+    const y = drops[i];
+    const ch = Math.random() > 0.5 ? '0' : '1';
+
+    // Hiệu ứng sáng dần ở đầu cột (giống ánh sáng rơi xuống)
+    const headOpacity = Math.min(1, 1.2 - (drops[i] / canvas.height));
+    const tailOpacity = Math.max(0.05, 0.7 - (drops[i] / canvas.height));
+
+    const gradient = ctx.createLinearGradient(x, y - fontSize * 1.5, x, y + fontSize * 1.5);
+    gradient.addColorStop(0, `rgba(0,255,136,${tailOpacity})`);
+    gradient.addColorStop(0.6, `rgba(0,255,136,${headOpacity})`);
+    gradient.addColorStop(1, `rgba(0,255,136,${tailOpacity * 0.4})`);
+
+    ctx.fillStyle = gradient;
+    ctx.fillText(ch, x, y);
+
+    // Tốc độ rơi ngẫu nhiên tạo cảm giác "chảy" như thác
+    drops[i] += 3 + Math.random() * 6;
+
+    // Reset lại khi ký tự rơi khỏi màn hình
+    if (drops[i] > canvas.height + Math.random() * 200) {
+      drops[i] = -Math.random() * 300;
+    }
+  }
+
+  requestAnimationFrame(draw);
+}
+
+
+requestAnimationFrame(draw);
+
+
+    const loader = document.getElementById('loader');
+    const main = document.getElementById('main');
+    const LOADER_MS = 5000;
+
+    window.addEventListener('load', ()=> {
+      setTimeout(()=> {
+        loader.classList.add('hidden');
+        setTimeout(()=>{
+          main.classList.add('visible');
+          document.body.style.overflow = 'auto';
+          loader.style.display = 'none';
+        }, 900);
+      }, LOADER_MS);
+    });
+
+    window.addEventListener('keydown', (e)=> {
+      if(e.key === 'Escape'){
+        loader.classList.add('hidden');
+        setTimeout(()=>{
+          main.classList.add('visible');
+          document.body.style.overflow = 'auto';
+          loader.style.display = 'none';
+        }, 300);
+      }
+    });
+  </script>
+</body>
+</html>

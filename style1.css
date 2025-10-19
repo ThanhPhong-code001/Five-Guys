@@ -1,0 +1,489 @@
+#location {
+  opacity: 0;
+  transform: translateY(10px);
+  margin-top: 15px;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.8);
+  transition: opacity 1s ease, transform 1s ease;
+}
+#location.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.highlight {
+  color: #ff004c;
+  text-shadow: 0 0 15px rgba(255,0,76,0.8);
+  font-weight: 600;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Poppins',sans-serif;
+  background:#0b0a0a;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* Navbar */
+.top-nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 30px;
+  background: transparent;
+  backdrop-filter: none;
+  z-index:1000;
+}
+.top-nav .logo{
+  color:#ff004c;
+  font-weight:700;
+  font-size:1.1rem;
+}
+.top-nav nav a{
+  color:#fff;text-decoration:none;margin:0 12px;
+  transition:color .3s;
+}
+.top-nav nav a:hover,
+.top-nav nav a.active{color:#ff004c;}
+
+/* Hero */
+.hero{
+  height:100vh;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+#bgCanvas{
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:85%;
+  max-width:1200px;
+}
+.text-area{
+  flex:1;
+  font-size:1.8rem;
+  line-height:1.5;
+}
+#typing{
+  color:#fff;
+  text-shadow:0 0 15px rgba(255,0,76,0.6);
+  display:inline;
+}
+.cursor{
+  color:#ff004c;
+  font-weight:bold;
+  font-size:2rem;
+  animation:blink 0.8s infinite;
+}
+@keyframes blink{50%{opacity:0;}}
+
+/* --- Box riêng cho Hình ảnh cá nhân --- */
+.about-gallery-section {
+  text-align: center;
+}
+
+.about-gallery-section h2 {
+  color: #ff004c;
+  margin-bottom: 20px;
+  text-shadow: 0 0 12px rgba(255,0,76,0.7);
+  font-size: 1.6rem;
+}
+
+.about-gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.about-gallery img {
+  width: 30%;
+  min-width: 180px;
+  border-radius: 16px;
+  box-shadow: 0 0 18px rgba(255,0,76,0.4);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about-gallery img:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 28px rgba(255,0,76,0.6);
+}
+
+/* Responsive cho điện thoại */
+@media (max-width: 768px) {
+  .about-gallery img {
+    width: 85%;
+  }
+}
+
+/* Ảnh chìm */
+.image-area{
+  flex:1;
+  display:flex;
+  justify-content:flex-end;
+  opacity:0.6;
+  mix-blend-mode:lighten;
+}
+.image-area img{
+  width:90%;
+  border-radius:20px;
+  filter:brightness(0.9) contrast(1.1);
+}
+
+/* Nội dung */
+.cv{
+  position:relative;
+  z-index:2;
+  max-width:900px;
+  margin:100px auto 50px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+.card{
+  background:rgba(255,255,255,0.05);
+  border-radius:16px;
+  padding:20px;
+  backdrop-filter:blur(10px);
+  box-shadow:0 8px 25px rgba(0,0,0,0.4);
+}
+/* Ảnh trong phần Giới thiệu */
+.about-img-container {
+  width: 140px;
+  margin-bottom: 15px;
+  animation: fadeUp 1s ease;
+}
+.about-img-container img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255,0,76,0.4);
+  border: 2px solid rgba(255,0,76,0.6);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.about-img-container img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255,0,76,0.7);
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Animation xuất hiện / biến mất khi cuộn */
+.fade-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
+}
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about p{line-height:1.6;}
+.navbar{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+}
+.nav-btn{
+  background:rgba(255,255,255,0.08);
+  border:none;
+  color:#fff;
+  padding:8px 20px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:600;
+  transition:all 0.3s ease;
+}
+
+/* --- Phần Dự án của tôi (Portfolio Grid) --- */
+.projects h2 {
+  color: #ff004c;
+  margin-bottom: 20px;
+  text-shadow: 0 0 12px rgba(255,0,76,0.7);
+  text-align: center;
+}
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.project-item {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.project-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(255,0,76,0.5);
+}
+.project-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.project-item:hover img {
+  opacity: 0.25;
+  transform: scale(1.05);
+}
+
+/* Lớp chữ overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  background: rgba(0,0,0,0.65);
+  color: #fff;
+  padding: 20px;
+  transition: opacity 0.5s ease;
+}
+.project-item:hover .overlay {
+  opacity: 1;
+}
+.overlay h3 {
+  color: #ff004c;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+.overlay p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.9);
+}
+
+.nav-btn:hover{background:#ff004c;}
+.nav-btn.active{background:#ff004c;color:#fff;}
+
+.info-section{display:none;animation:fadeIn .5s ease forwards;}
+.info-section.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* Skills */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:10px;}
+.skill-header{display:flex;justify-content:space-between;margin-bottom:5px;}
+.bar{height:10px;background:rgba(255,255,255,0.15);border-radius:10px;overflow:hidden;}
+.bar-fill{width:0;height:100%;background:linear-gradient(90deg,#ff004c,#ff5580);border-radius:10px;transition:width 1.5s ease-in-out;}
+#scrollTopBtn{
+  background:#ff004c;color:#fff;border:none;padding:10px 25px;border-radius:25px;cursor:pointer;
+  transition:transform .3s;
+}
+/* --- Phần "Xem lại từ đầu" --- */
+.review-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
+  padding: 30px 0;
+  text-align: center;
+  background: transparent;
+}
+
+#scrollTopBtn {
+  background: linear-gradient(90deg, #ff004c, #ff5580);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 0 18px rgba(255,0,76,0.4);
+  transition: all 0.3s ease;
+}
+
+#scrollTopBtn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 28px rgba(255,0,76,0.7);
+}
+
+/* Hiệu ứng hiện dần khi cuộn xuống gần cuối trang */
+.review-section.fade-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.review-section.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Nút cuộn lên đầu: chỉ có icon, không nền, không viền --- */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  font-size: 1.7rem;          /* kích thước icon vừa phải */
+  background: none;           /* bỏ nền hoàn toàn */
+  border: none;               /* không viền */
+  color: #ffffffcc;           /* trắng hơi mờ để dịu */
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+  z-index: 999;
+}
+
+#scrollTopBtn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.05);
+}
+
+#scrollTopBtn:hover {
+  color: #ff004c;             /* chuyển sang đỏ hồng khi hover */
+  transform: scale(1.15);
+  text-shadow: 0 0 8px rgba(255,0,76,0.6);
+}
+
+footer {
+  text-align: center;
+}
+
+.footer-center {
+  margin-top: 10px;
+}
+
+.download-cv-btn {
+  display: inline-block;
+  padding: 10px 22px;
+  background: linear-gradient(90deg, #ff004c, #ff5580);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 25px;
+  box-shadow: 0 0 15px rgba(255,0,76,0.4);
+  transition: all 0.3s ease;
+}
+
+.download-cv-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(255,0,76,0.7);
+}
+
+.contact-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 60px 100px;
+}
+
+.contact-left h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.contact-left p {
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
+.social-links {
+  margin-top: 15px;
+}
+
+.social-links a {
+  font-size: 1.8rem;
+  color: #ffffffcc;
+  margin-right: 20px;
+  transition: 0.3s;
+}
+
+.social-links a:hover {
+  color: #ff004c;
+  transform: scale(1.1);
+}
+
+
+.contact-right {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 15px;
+}
+
+.contact-right input,
+.contact-right textarea {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.contact-right button {
+  padding: 12px;
+  background: #ff004c;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.contact-right button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255,0,76,0.6);
+}
+
+/* Responsive cho tablet và mobile */
+@media (max-width: 992px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .image-area {
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .contact-section {
+    flex-direction: column;
+    padding: 40px 30px;
+    gap: 30px;
+  }
+  .contact-right {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .top-nav nav a {
+    margin: 0 6px;
+    font-size: 0.9rem;
+  }
+  .hero {
+    height: auto;
+    padding: 80px 0;
+  }
+  .text-area h1 {
+    font-size: 1.4rem;
+  }
+  .contact-left h2 {
+    font-size: 1.8rem;
+  }
+}
